@@ -1,0 +1,213 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+// Function prototypes
+void startGame();
+void firstDecision();
+void enterDungeon();
+void investigateMystery();
+void hideInSafeRoom();
+void runToTheExit();
+void searchForEscape();
+void continueAdventure();
+void gameOver();
+void gameWon();
+int getPlayerChoice();
+
+int main() {
+    // Start the game
+    startGame();
+    return 0;
+}
+
+// Function to start the game
+void startGame() {
+    cout << "Welcome to the Wizard's Castle: A Magical Adventure!" << endl;
+    cout << "You find yourself in a magical castle full of powerful spells and dangerous creatures. Your goal is to survive and escape." << endl;
+
+    // First choice of the game
+    firstDecision();
+}
+
+// First decision - Entering the dungeon or running away
+void firstDecision() {
+    cout << "\nYou're standing at the entrance of the Wizard's Castle." << endl;
+    cout << "Do you: " << endl;
+    cout << "1. Enter the dungeon and explore the castle." << endl;
+    cout << "2. Turn back and escape through the castle gates." << endl;
+
+    int choice = getPlayerChoice();
+
+    if (choice == 1) {
+        enterDungeon();
+    } else if (choice == 2) {
+        runToTheExit();
+    } else {
+        cout << "Invalid choice. Try again." << endl;
+        firstDecision();
+    }
+}
+
+// Function to handle entering the dungeon
+void enterDungeon() {
+    cout << "\nYou cautiously enter the dungeon, your footsteps echoing in the dark." << endl;
+    cout << "Suddenly, you hear a strange noise coming from the shadows!" << endl;
+    cout << "Do you: " << endl;
+    cout << "1. Investigate the noise." << endl;
+    cout << "2. Hide in a nearby safe room." << endl;
+
+    int choice = getPlayerChoice();
+
+    if (choice == 1) {
+        investigateMystery();
+    } else if (choice == 2) {
+        hideInSafeRoom();
+    } else {
+        cout << "Invalid choice. Try again." << endl;
+        enterDungeon();
+    }
+}
+
+// Function for investigating the noise
+void investigateMystery() {
+    cout << "\nYou step closer to investigate and find a glowing enchanted chest!" << endl;
+    cout << "Do you: " << endl;
+    cout << "1. Open the chest to discover what is inside." << endl;
+    cout << "2. Leave it alone and walk away." << endl;
+
+    int choice = getPlayerChoice();
+
+    if (choice == 1) {
+        cout << "\nYou open the chest, and a burst of magic sends you into a trance. The magic overwhelms you, and you lose consciousness." << endl;
+        gameOver();
+    } else if (choice == 2) {
+        cout << "\nYou wisely avoid the chest and continue deeper into the dungeon, but you feel like something is watching you." << endl;
+        continueAdventure();
+    } else {
+        cout << "Invalid choice. Try again." << endl;
+        investigateMystery();
+    }
+}
+
+// Function for hiding in a safe room
+void hideInSafeRoom() {
+    cout << "\nYou rush into a nearby safe room and lock the door behind you." << endl;
+    cout << "But suddenly, a group of magical goblins bursts through the walls!" << endl;
+    cout << "Do you: " << endl;
+    cout << "1. Fight the goblins using your magic wand." << endl;
+    cout << "2. Escape through the hidden exit in the room." << endl;
+
+    int choice = getPlayerChoice();
+
+    if (choice == 1) {
+        cout << "\nYou attempt to fight the goblins, but they are too powerful and overpower you!" << endl;
+        gameOver();
+    } else if (choice == 2) {
+        cout << "\nYou manage to escape through the hidden exit and continue your journey." << endl;
+        continueAdventure();
+    } else {
+        cout << "Invalid choice. Try again." << endl;
+        hideInSafeRoom();
+    }
+}
+
+// Function for running to the exit (initial choice)
+void runToTheExit() {
+    cout << "\nYou make a dash for the exit, but as you approach, the castle doors magically slam shut!" << endl;
+    cout << "It seems you're trapped inside the castle with no way to escape." << endl;
+    cout << "Do you: " << endl;
+    cout << "1. Search for another way out." << endl;
+    cout << "2. Wait for a magical rescue." << endl;
+
+    int choice = getPlayerChoice();
+
+    if (choice == 1) {
+        searchForEscape();
+    } else if (choice == 2) {
+        cout << "\nYou wait for days, but no rescue arrives. The magical barriers grow stronger, and you eventually lose hope." << endl;
+        gameOver();
+    } else {
+        cout << "Invalid choice. Try again." << endl;
+        runToTheExit();
+    }
+}
+
+// Function for searching for an escape after the exit is blocked
+void searchForEscape() {
+    cout << "\nYou find a hidden passage that leads to a secret underground tunnel!" << endl;
+    cout << "Do you: " << endl;
+    cout << "1. Enter the tunnel and hope it leads to freedom." << endl;
+    cout << "2. Wait and hope for someone to find you." << endl;
+
+    int choice = getPlayerChoice();
+
+    if (choice == 1) {
+        cout << "\nYou enter the tunnel and after a long journey, you emerge outside the castle. You've escaped!" << endl;
+        gameWon();
+    } else if (choice == 2) {
+        cout << "\nA week passes, and you're still waiting. The magical traps have grown stronger, and you remain trapped in the castle." << endl;
+        gameOver();
+    } else {
+        cout << "Invalid choice. Try again." << endl;
+        searchForEscape();
+    }
+}
+
+// Function for continuing the adventure after escaping danger
+void continueAdventure() {
+    cout << "\nYou survive the encounter and find yourself in a safe zone." << endl;
+    cout << "Do you: " << endl;
+    cout << "1. Explore further into the castle." << endl;
+    cout << "2. Look for a way to signal for help." << endl;
+
+    int choice = getPlayerChoice();
+
+    if (choice == 1) {
+        cout << "\nThe adventure continues! But for now, you're safe." << endl;
+        gameWon(); // A temporary win just to wrap up the game.
+    } else if (choice == 2) {
+        cout << "\nYou find a magical crystal and use it to signal for help. A wizard arrives to rescue you!" << endl;
+        gameWon();
+    } else {
+        cout << "Invalid choice. Try again." << endl;
+        continueAdventure();
+    }
+}
+
+// Function to handle game over state
+void gameOver() {
+    cout << "\nGAME OVER! You didn't survive the wizard's castle." << endl;
+    cout << "Would you like to play again? (yes/no)" << endl;
+    string response;
+    getline(cin, response);
+    if (response == "yes") {
+        startGame();
+    } else {
+        cout << "Thanks for playing!" << endl;
+    }
+}
+
+// Function to handle game won state
+void gameWon() {
+    cout << "\nCONGRATULATIONS! You've survived the wizard's castle!" << endl;
+    cout << "Would you like to play again? (yes/no)" << endl;
+    string response;
+    getline(cin, response);
+    if (response == "yes") {
+        startGame();
+    } else {
+        cout << "Thanks for playing!" << endl;
+    }
+}
+
+// Helper function to get player choice
+int getPlayerChoice() {
+    int choice = -1;
+    while (choice < 1 || choice > 2) {
+        cout << "Enter your choice (1 or 2): ";
+        cin >> choice;
+        cin.ignore();  // To consume the newline character
+    }
+    return choice;
+}
